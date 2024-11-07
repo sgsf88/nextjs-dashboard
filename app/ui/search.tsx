@@ -10,9 +10,9 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
-    console.log('검색중', term);
-
     const params = new URLSearchParams(searchParams);
+    // 검색어 입력 시 페이지 번호 초기화
+    params.set('page', '1');
 
     if (term) {
       params.set('query', term);
@@ -20,6 +20,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       params.delete('query');
     }
 
+    //url에 파라메터 매칭
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
