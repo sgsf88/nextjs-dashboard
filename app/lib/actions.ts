@@ -107,5 +107,7 @@ export async function authenticate(
     }
     // 인증오류가 아닌경우 error객체 던짐
     throw error;
+  } finally {
+    redirect('/dashboard');
   }
 }
